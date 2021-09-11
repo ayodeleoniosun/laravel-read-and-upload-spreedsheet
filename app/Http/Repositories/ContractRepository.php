@@ -4,6 +4,7 @@ namespace App\Http\Repositories;
 
 use App\Exceptions\EmptySheetException;
 use App\Exceptions\FileTooLargeException;
+use App\Exceptions\NoContractFoundException;
 use App\Http\Interfaces\ContractInterface;
 use App\Http\Models\Contract;
 use App\Jobs\ImportContract;
@@ -13,6 +14,32 @@ class ContractRepository implements ContractInterface
 {
     const MAX_UPLOAD = 250;
 
+    public function index(object $request) : array
+    {
+        $contracts = Contract::query();
+
+        if ($request->filled('search')) {
+            $q = $request->search;
+            
+            $contracts = $contracts->where(function ($query) use ($q) {
+                $query->where('agreement_date', 'LIKE', '%' . $q . '%')
+                    ->orWhere('amount', 'LIKE', '%' . $q . '%')
+                    ->orWhere('winning_company', 'LIKE', '%' . $q . '%');
+            });
+        }
+
+        $contracts = $contracts->orderBy('created_at', 'DESC')->paginate(50);
+
+        if ($contracts->count() == 0) {
+            throw new NoContractFoundException();
+        }
+
+        return [
+            'status' => 'success',
+            'contracts' => $contracts
+        ];
+    }
+    
     public function upload(object $request): array
     {
         $file = $request->file;

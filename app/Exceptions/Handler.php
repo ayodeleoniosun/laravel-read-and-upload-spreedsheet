@@ -51,11 +51,15 @@ class Handler extends ExceptionHandler
     {
         switch ($exception) {
             case $exception instanceof InvalidFileException:
-                return $this->response('Only excel files are allowed');
+                return $this->response('Only excel files are allowed', Response::HTTP_BAD_REQUEST);
                 break;
 
             case $exception instanceof EmptySheetException:
-                return $this->response('Empty sheet cannot be uploaded');
+                return $this->response('Empty sheet cannot be uploaded', Response::HTTP_BAD_REQUEST);
+                break;
+
+            case $exception instanceof NoContractFoundException:
+                return $this->response('No contract found', Response::HTTP_NOT_FOUND);
                 break;
 
             default:
@@ -63,11 +67,11 @@ class Handler extends ExceptionHandler
         }
     }
 
-    private function response($message)
+    private function response($message, $code)
     {
         return response()->json([
             'status' => 'error',
             'message' => $message,
-        ], Response::HTTP_BAD_REQUEST);
+        ], $code);
     }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Interfaces;
 
 interface ContractInterface
 {
-    public function upload(object $data): array;
+    public function index(object $request): array;
 
-    public function store(array $contracts);
+    public function upload(object $request): array;
+
+    public function store(array $request);
 }

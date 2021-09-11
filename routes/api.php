@@ -17,6 +17,7 @@ Route::group(
     ['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'],
     function () {
         Route::group(['prefix' => 'contracts'], function () {
+            Route::get('/index', 'ContractController@index')->name('contract.index');
             Route::post('/upload', 'ContractController@upload')->name('contract.upload');
         });
     }
