@@ -74,18 +74,18 @@ class ContractRepository implements ContractInterface
         $spreadsheet = $reader->load($path);
 
         $contract = $spreadsheet->getActiveSheet()->toArray(null, true, true, true);
-        $count_total_rows = count($contract) - 1;
+        $countTotalRows = count($contract) - 1;
         
-        if ($count_total_rows < 1) {
+        if ($countTotalRows < 1) {
             throw new EmptySheetException();
         }
 
-        if ($count_total_rows > self::MAX_UPLOAD) {
+        if ($countTotalRows > self::MAX_UPLOAD) {
             throw new FileTooLargeException('You cannot upload more than '.self::MAX_UPLOAD.' records at a time.');
         }
 
-        $sheet_names = $spreadsheet->getSheetNames();
-        $reader->setLoadSheetsOnly($sheet_names[0]);
+        $sheetNames = $spreadsheet->getSheetNames();
+        $reader->setLoadSheetsOnly($sheetNames[0]);
         unset($contract[1]);
         
         ImportContract::dispatch(array_values($contract));
@@ -100,9 +100,9 @@ class ContractRepository implements ContractInterface
     {
         foreach ($contracts as $contract) {
             $data = (object) $contract;
-            $contract_exists = Contract::where('contract_id', $data->contract_id)->exists();
+            $contractExists = Contract::where('contract_id', $data->contract_id)->exists();
 
-            if (!$contract_exists) {
+            if (!$contractExists) {
                 Contract::create([
                     'contract_id' => $data->contract_id,
                     'announcement' => $data->announcement,

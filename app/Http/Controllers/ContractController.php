@@ -30,7 +30,10 @@ class ContractController extends Controller
 
     public function upload(ContractUploadRequest $request)
     {
-        if ($request->file('file')->getClientOriginalExtension() !== 'xlsx') {
+        $extension = $request->file('file')->getClientOriginalExtension();
+        $allowedExtensions = ['xls', 'xlsx'];
+
+        if (!in_array($extension, $allowedExtensions)) {
             throw new InvalidFileException();
         }
 
