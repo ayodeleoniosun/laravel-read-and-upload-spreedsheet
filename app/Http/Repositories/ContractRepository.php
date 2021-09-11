@@ -41,7 +41,7 @@ class ContractRepository implements ContractInterface
         ];
     }
 
-    public function find(int $id) : array
+    public function find(int $id, string $status = null) : array
     {
         $contract = Contract::find($id);
 
@@ -49,6 +49,13 @@ class ContractRepository implements ContractInterface
             throw new ContractNotFoundException();
         }
 
+        if ($status === 'status') {
+            return [
+                'status' => 'success',
+                'contract_status' => $contract->status
+            ];
+        }
+        
         $contract->status = 'read';
         $contract->save();
 

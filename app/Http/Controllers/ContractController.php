@@ -22,9 +22,9 @@ class ContractController extends Controller
         return response()->json($response, 200);
     }
 
-    public function find(int $id)
+    public function find(int $id, string $status = null)
     {
-        $response = $this->contractInterface->find($id);
+        $response = $this->contractInterface->find($id, $status);
         return response()->json($response, 200);
     }
 
