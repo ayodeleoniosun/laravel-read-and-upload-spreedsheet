@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpFoundation\Response;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -36,5 +37,37 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * Render an exception into an HTTP response.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param \Throwable $e
+     * @return \Illuminate\Http\Response
+     */
+
+    public function render($request, Throwable $exception)
+    {
+        switch ($exception) {
+            case $exception instanceof InvalidFileException:
+                return $this->response('Only excel files are allowed');
+                break;
+
+            case $exception instanceof EmptySheetException:
+                return $this->response('Empty sheet cannot be uploaded');
+                break;
+
+            default:
+                return parent::render($request, $exception);
+        }
+    }
+
+    private function response($message)
+    {
+        return response()->json([
+            'status' => 'error',
+            'message' => $message,
+        ], Response::HTTP_BAD_REQUEST);
     }
 }

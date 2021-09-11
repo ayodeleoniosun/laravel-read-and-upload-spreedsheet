@@ -9,5 +9,7 @@ class Contract extends Model
 {
     use HasFactory;
 
-    protected $table = 'contracts';
+    protected $table = 'contract';
+
+    protected $guarded = ['id'];
 }
