@@ -9,6 +9,8 @@ use App\Exceptions\NoContractFoundException;
 use App\Http\Interfaces\ContractInterface;
 use App\Http\Models\Contract;
 use App\Jobs\ImportContract;
+use App\Mails\SendImportReportMail;
+use Illuminate\Support\Facades\Mail;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ContractRepository implements ContractInterface
@@ -98,6 +100,9 @@ class ContractRepository implements ContractInterface
 
     public function store($contracts)
     {
+        $successfulData = [];
+        $failedData = [];
+
         foreach ($contracts as $contract) {
             $data = (object) $contract;
             $contractExists = Contract::where('contract_id', $data->contract_id)->exists();
@@ -119,7 +124,19 @@ class ContractRepository implements ContractInterface
                     'location' => $data->location,
                     'reasoning' => $data->reasoning
                 ]);
+
+                $successfulData[] = $data->contract_id;
+            } else {
+                $failedData[] = $data->contract_id;
             }
         }
+
+        $data = [
+            'successful' => $successfulData,
+            'failed' => $failedData
+        ];
+
+        $emailAddress = config('constants.admin_email_address');
+        Mail::to($emailAddress)->queue((new SendImportReportMail($data))->onQueue('import_report'));
     }
 }
