@@ -22,6 +22,12 @@ class ContractController extends Controller
         return response()->json($response, 200);
     }
 
+    public function find(int $id)
+    {
+        $response = $this->contractInterface->find($id);
+        return response()->json($response, 200);
+    }
+
     public function upload(ContractUploadRequest $request)
     {
         if ($request->file('file')->getClientOriginalExtension() !== 'xlsx') {

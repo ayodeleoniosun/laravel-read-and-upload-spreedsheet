@@ -18,6 +18,7 @@ Route::group(
     function () {
         Route::group(['prefix' => 'contracts'], function () {
             Route::get('/index', 'ContractController@index')->name('contract.index');
+            Route::get('/{id}', 'ContractController@find')->name('contract.find');
             Route::post('/upload', 'ContractController@upload')->name('contract.upload');
         });
     }

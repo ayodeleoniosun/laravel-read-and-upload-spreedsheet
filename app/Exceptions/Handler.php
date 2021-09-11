@@ -62,6 +62,10 @@ class Handler extends ExceptionHandler
                 return $this->response('No contract found', Response::HTTP_NOT_FOUND);
                 break;
 
+            case $exception instanceof ContractNotFoundException:
+                return $this->response('Contract not found', Response::HTTP_NOT_FOUND);
+                break;
+
             default:
                 return parent::render($request, $exception);
         }

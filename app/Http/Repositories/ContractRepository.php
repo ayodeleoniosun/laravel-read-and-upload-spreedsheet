@@ -2,6 +2,7 @@
 
 namespace App\Http\Repositories;
 
+use App\Exceptions\ContractNotFoundException;
 use App\Exceptions\EmptySheetException;
 use App\Exceptions\FileTooLargeException;
 use App\Exceptions\NoContractFoundException;
@@ -37,6 +38,23 @@ class ContractRepository implements ContractInterface
         return [
             'status' => 'success',
             'contracts' => $contracts
+        ];
+    }
+
+    public function find(int $id) : array
+    {
+        $contract = Contract::find($id);
+
+        if (!$contract) {
+            throw new ContractNotFoundException();
+        }
+
+        $contract->status = 'read';
+        $contract->save();
+
+        return [
+            'status' => 'success',
+            'contracts' => $contract
         ];
     }
     
