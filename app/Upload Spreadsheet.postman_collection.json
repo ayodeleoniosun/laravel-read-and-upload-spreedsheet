@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "41958e4b-87b1-4ba5-a173-ea606d5e6a48",
+		"name": "Upload Spreadsheet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Upload Sheet",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/Dev-AY/Downloads/contract.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{contracts}}/upload",
+					"host": [
+						"{{contracts}}"
+					],
+					"path": [
+						"upload"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Contract",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{contracts}}?search=lda",
+					"host": [
+						"{{contracts}}"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "lda"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Contract",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{contracts}}/1",
+					"host": [
+						"{{contracts}}"
+					],
+					"path": [
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Read Contract Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{contracts}}/1/status",
+					"host": [
+						"{{contracts}}"
+					],
+					"path": [
+						"1",
+						"status"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "v1",
+			"value": "http://localhost:8000/api/v1"
+		},
+		{
+			"key": "contracts",
+			"value": "{{v1}}/contracts"
+		}
+	]
+}
