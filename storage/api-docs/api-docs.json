@@ -14,8 +14,8 @@
     },
     "servers": [
         {
-            "url": "http://localhost:8000/api/v1",
-            "description": "Test Server"
+            "url": "https://read-upload-spreedsheet.herokuapp.com/api/v1",
+            "description": "Production Server"
         }
     ],
     "paths": {
