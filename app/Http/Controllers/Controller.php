@@ -13,8 +13,8 @@ class Controller extends BaseController
     /**
      * @OA\Info(
      *      version="1.0.0",
-     *      title="Edenlife Meal Recommendation System API V1 Documentation",
-     *      description="Edenlife Meal Recommendation System API V1 Documentation",
+     *      title="Upload Spreadsheet API V1 Documentation",
+     *      description="Upload Spreadsheet API V1 Documentation",
      *      @OA\Contact(
      *          email="ayodeleoniosun63@gmail.com"
      *      ),
@@ -29,13 +29,6 @@ class Controller extends BaseController
      *      description="Test Server"
      * )
      *
-     *
-     * * @OA\SecurityScheme(
-     *      securityScheme="bearer_token",
-     *      in="header",
-     *      type="http",
-     *      scheme="bearer",
-     * )
      *
      */
 }

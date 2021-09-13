@@ -1,8 +1,8 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Edenlife Meal Recommendation System API V1 Documentation",
-        "description": "Edenlife Meal Recommendation System API V1 Documentation",
+        "title": "Upload Spreadsheet API V1 Documentation",
+        "description": "Upload Spreadsheet API V1 Documentation",
         "contact": {
             "email": "ayodeleoniosun63@gmail.com"
         },
@@ -14,434 +14,30 @@
     },
     "servers": [
         {
-            "url": "https://ayodele-meals-recommendation.herokuapp.com/api/v1/",
-            "description": "Production Server"
+            "url": "http://localhost:8000/api/v1",
+            "description": "Test Server"
         }
     ],
     "paths": {
-        "/allergies": {
-            "get": {
-                "tags": [
-                    "Allergies"
-                ],
-                "summary": "Show user allergies",
-                "description": "Show user allergies",
-                "operationId": "2af3efecc83cf8d76e4190037b935e41",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "allergies": {
-                                            "description": "The response data",
-                                            "type": "array",
-                                            "items": {}
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "401": {
-                        "description": "Unauthorized access"
-                    },
-                    "404": {
-                        "description": "Resource not found"
-                    },
-                    "500": {
-                        "description": "An error occured."
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            },
+        "/contracts/upload": {
             "post": {
                 "tags": [
-                    "Allergies"
+                    "Contracts"
                 ],
-                "summary": "Pick one or more allergies",
-                "description": "Pick one or more allergies",
-                "operationId": "7ef07e97ae74e065abdaf4b5e199d142",
+                "summary": "Upload contract",
+                "description": "Upload contract",
+                "operationId": "763f8984cc8146b17b4e1b6a6f2d921a",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
                                 "required": [
-                                    "allergies"
+                                    "file"
                                 ],
                                 "properties": {
-                                    "allergies": {
-                                        "type": "array",
-                                        "items": {}
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful registration",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "allergies": {
-                                            "description": "data",
-                                            "type": "array",
-                                            "items": {}
-                                        },
-                                        "message": {
-                                            "description": "The response message",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "description": "The response message",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "500": {
-                        "description": "An error occured"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
-            }
-        },
-        "/meals": {
-            "get": {
-                "tags": [
-                    "Meals"
-                ],
-                "summary": "Get list of meals",
-                "description": "Returns list of meals",
-                "operationId": "b59c41d713c10f8b0808eb43a10e9390",
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "meals": {
-                                            "description": "The response data",
-                                            "type": "array",
-                                            "items": {}
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource not found"
-                    },
-                    "500": {
-                        "description": "An error occured."
-                    }
-                }
-            }
-        },
-        "/meals/{id}": {
-            "get": {
-                "tags": [
-                    "Meals"
-                ],
-                "summary": "Find meal and its respective allergies, main item and side items",
-                "description": "Find meal and its respective allergies, main item and side items",
-                "operationId": "0acc5fc98cc9a2c90e435e7b137c0b4d",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "meal id",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "meal": {
-                                            "description": "The response data",
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request"
-                    },
-                    "404": {
-                        "description": "Resource not found"
-                    },
-                    "500": {
-                        "description": "An error occured."
-                    }
-                }
-            }
-        },
-        "/meals/recommendations": {
-            "post": {
-                "tags": [
-                    "Meals"
-                ],
-                "summary": "Show meals recommendations for either single or multiple  users",
-                "description": "Show meals recommendations for either single or multiple  users",
-                "operationId": "3e132945aee65d7cf87b09549ba53d56",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "users"
-                                ],
-                                "properties": {
-                                    "users": {
-                                        "type": "array",
-                                        "items": {}
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "recommendations": {
-                                            "description": "data",
-                                            "type": "array",
-                                            "items": {}
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "description": "The response message",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "500": {
-                        "description": "An error occured"
-                    }
-                }
-            }
-        },
-        "/users/register": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Sign up a new account",
-                "description": "Sign up a new account",
-                "operationId": "75ac4d6a6e8c8bdc865ea7806514679b",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "first_name",
-                                    "last_name",
-                                    "email_address",
-                                    "phone_number",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "first_name": {
-                                        "type": "string"
-                                    },
-                                    "last_name": {
-                                        "type": "string"
-                                    },
-                                    "email_address": {
-                                        "type": "string"
-                                    },
-                                    "phone_number": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful registration",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "user": {
-                                            "description": "data",
-                                            "type": "array",
-                                            "items": {}
-                                        },
-                                        "message": {
-                                            "description": "The response message",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "400": {
-                        "description": "Bad request",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "status": {
-                                            "description": "The response code",
-                                            "type": "string"
-                                        },
-                                        "message": {
-                                            "description": "The response message",
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Resource Not Found"
-                    },
-                    "500": {
-                        "description": "An error occured"
-                    }
-                }
-            }
-        },
-        "/users/login": {
-            "post": {
-                "tags": [
-                    "Users"
-                ],
-                "summary": "Login to an existing account",
-                "description": "Login to an existing account",
-                "operationId": "2bed00028ae8e20c4e21a4f7b8c6c281",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "email_address",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "email_address": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
+                                    "file": {
+                                        "description": "file to upload",
+                                        "type": "file"
                                     }
                                 },
                                 "type": "object"
@@ -460,11 +56,6 @@
                                             "description": "The response code",
                                             "type": "string"
                                         },
-                                        "user": {
-                                            "description": "data",
-                                            "type": "array",
-                                            "items": {}
-                                        },
                                         "message": {
                                             "description": "The response message",
                                             "type": "string"
@@ -504,14 +95,13 @@
                 }
             }
         },
-        "/users/meals/recommendations": {
+        "/contracts": {
             "get": {
                 "tags": [
-                    "Users"
+                    "Contracts"
                 ],
-                "summary": "Show logged in user meal recommendations based on his allergy",
-                "description": "Show logged in user meal recommendations based on his allergy",
-                "operationId": "f9e6a6234d443254a203f2daa811394e",
+                "summary": "Get list of contracts",
+                "description": "Returns list of contracts",
                 "responses": {
                     "200": {
                         "description": "Successful operation",
@@ -523,7 +113,7 @@
                                             "description": "The response code",
                                             "type": "string"
                                         },
-                                        "recommendations": {
+                                        "contracts": {
                                             "description": "The response data",
                                             "type": "array",
                                             "items": {}
@@ -537,8 +127,58 @@
                     "400": {
                         "description": "Bad request"
                     },
-                    "401": {
-                        "description": "Unauthorized access"
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "500": {
+                        "description": "An error occured."
+                    }
+                }
+            }
+        },
+        "/contracts?search={searchTerm}": {
+            "get": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Search contract by date (dataCelebracaoContrato), amount (range) (precoContratual), winning company (adjudicatarios)",
+                "description": "Returns search result",
+                "operationId": "58e1473ba827a640dfed373e1b267169",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "description": "search term",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "The response code",
+                                            "type": "string"
+                                        },
+                                        "contracts": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
                     },
                     "404": {
                         "description": "Resource not found"
@@ -546,21 +186,112 @@
                     "500": {
                         "description": "An error occured."
                     }
-                },
-                "security": [
-                    {
-                        "bearer_token": []
-                    }
-                ]
+                }
             }
-        }
-    },
-    "components": {
-        "securitySchemes": {
-            "bearer_token": {
-                "type": "http",
-                "in": "header",
-                "scheme": "bearer"
+        },
+        "/contracts/{id}": {
+            "get": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Find contract",
+                "description": "Returns details of a single contract",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "contract id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "The response code",
+                                            "type": "string"
+                                        },
+                                        "contract": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "500": {
+                        "description": "An error occured."
+                    }
+                }
+            }
+        },
+        "/contracts/{id}/status": {
+            "get": {
+                "tags": [
+                    "Contracts"
+                ],
+                "summary": "Find contract status",
+                "description": "Returns the status of a single contract",
+                "operationId": "1b32cced63fdb88129166c21153128df",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "contract id",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "description": "The response code",
+                                            "type": "string"
+                                        },
+                                        "contract": {
+                                            "description": "The response data",
+                                            "type": "array",
+                                            "items": {}
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "404": {
+                        "description": "Resource not found"
+                    },
+                    "500": {
+                        "description": "An error occured."
+                    }
+                }
             }
         }
     }

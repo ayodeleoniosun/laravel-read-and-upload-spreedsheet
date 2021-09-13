@@ -17,9 +17,9 @@ Route::group(
     ['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'],
     function () {
         Route::group(['prefix' => 'contracts'], function () {
-            Route::get('/index', 'ContractController@index')->name('contract.index');
-            Route::get('/{id}/{status?}', 'ContractController@find')->name('contract.find');
             Route::post('/upload', 'ContractController@upload')->name('contract.upload');
+            Route::get('/', 'ContractController@index')->name('contract.index'); //note that this endpoint is also used for searching (?search=value)
+            Route::get('/{id}/{status?}', 'ContractController@find')->name('contract.find');
         });
     }
 );
