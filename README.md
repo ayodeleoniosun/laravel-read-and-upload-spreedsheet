@@ -54,7 +54,7 @@ php artisan serve
 
 You can now access the api locally at http://localhost:8000/api/v1
 
-You can now access the api remotely [here](https://ayodele-laravel-read-upload-spreedsheet.com/api/v1).
+You can now access the api remotely [here](https://read-upload-spreedsheet.herokuapp.com/api/v1).
 ## Documentation
 
 Publish the swagger documentation by running this
@@ -66,7 +66,7 @@ After starting the project in development mode, you can import the postman colle
 
 The API documentation is available locally [here](http://localhost:8000).
 
-The API documentation is available remotely [here](https://ayodele-laravel-read-upload-spreedsheet.herokuapp.com).
+The API documentation is available remotely [here](https://read-upload-spreedsheet.herokuapp.com).
 ## Testing
 #### Run test
 
