@@ -44,7 +44,7 @@
     contracts that already exist and were not uploaded.
     <br />
 
-    <div id="enrolleesList">
+    <div id="contracts">
         {{ $report['failed']}}
     </div><br /><br />
     @endif

@@ -27,6 +27,7 @@ class ImportContract implements ShouldQueue
     public function __construct($data)
     {
         $this->data = $data;
+        $this->onQueue('contract_upload');
     }
 
     /**

@@ -137,6 +137,6 @@ class ContractRepository implements ContractInterface
         ];
 
         $emailAddress = config('constants.admin_email_address');
-        Mail::to($emailAddress)->queue((new SendImportReportMail($data))->onQueue('import_report'));
+        Mail::to($emailAddress)->queue((new SendImportReportMail($data))->onQueue('import_report_email'));
     }
 }

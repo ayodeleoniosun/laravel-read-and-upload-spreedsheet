@@ -51,7 +51,7 @@ class SendImportReportMail extends Mailable
                 ->addTextHeader('X-SES-CONFIGURATION-SET', 'suetco');
         });
 
-        return $this->from('hello@contract.com', 'Color Elephant')
+        return $this->from('hello@colorelephant.com', 'Color Elephant')
             ->subject(config('app.env').' '.$subject)
             ->view('email.import_report', ['report' => $report]);
     }
