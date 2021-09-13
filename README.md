@@ -62,7 +62,7 @@ Publish the swagger documentation by running this
 php artisan vendor:publish --provider "L5Swagger\L5SwaggerServiceProvider"
 ```
 
-After starting the project in development mode, you can import the postman collection [here](https://github.com/ayodeleoniosun/laravel-read-upload-spreedsheet/app/Upload Spreadsheet.postman_collection.json).
+After starting the project in development mode, you can import the postman collection [here](https://github.com/ayodeleoniosun/laravel-read-upload-spreedsheet/blob/master/app/Upload%20Spreadsheet.postman_collection.json).
 
 The API documentation is available locally [here](http://localhost:8000).
 
