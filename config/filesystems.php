@@ -52,54 +52,12 @@ return [
             'endpoint' => env('AWS_ENDPOINT'),
         ],
 
-        'users' => (
-            env('APP_ENV') == 'production' ?
-            [
-                'driver' => 's3',
-                'key' => env('AWS_ACCESS_KEY_ID'),
-                'secret' => env('AWS_SECRET_ACCESS_KEY'),
-                'region' => env('AWS_DEFAULT_REGION'),
-                'bucket' => env('AWS_BUCKET'),
-            ]: [
-                'driver' => 'local',
-                'root' => storage_path('app/public/users'),
-                'url' => env('APP_URL').'/storage/users',
-                'visibility' => 'public'
-            ]
-        ),
-
-        'categories' => (
-            env('APP_ENV') == 'production' ?
-            [
-                'driver' => 's3',
-                'key' => env('AWS_ACCESS_KEY_ID'),
-                'secret' => env('AWS_SECRET_ACCESS_KEY'),
-                'region' => env('AWS_DEFAULT_REGION'),
-                'bucket' => env('AWS_BUCKET'),
-            ]: [
-                'driver' => 'local',
-                'root' => storage_path('app/public/categories'),
-                'url' => env('APP_URL').'/storage/categories',
-                'visibility' => 'public'
-            ]
-        ),
-
-        'ads' => (
-            env('APP_ENV') == 'production' ?
-            [
-                'driver' => 's3',
-                'key' => env('AWS_ACCESS_KEY_ID'),
-                'secret' => env('AWS_SECRET_ACCESS_KEY'),
-                'region' => env('AWS_DEFAULT_REGION'),
-                'bucket' => env('AWS_BUCKET'),
-            ]: [
-                'driver' => 'local',
-                'root' => storage_path('app/public/ads'),
-                'url' => env('APP_URL').'/storage/ads',
-                'visibility' => 'public'
-            ]
-        ),
-
+        'contracts' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/contracts'),
+            'url' => env('APP_URL').'/storage/contracts',
+            'visibility' => 'public'
+        ],
     ],
 
     /*

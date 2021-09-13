@@ -15,20 +15,20 @@ class CreateContractTable extends Migration
     {
         Schema::create('contract', function (Blueprint $table) {
             $table->id();
-            $table->string('contract_id')->unique();
-            $table->string('announcement');
-            $table->string('contract_type');
-            $table->string('procedure_type');
-            $table->string('contract_object');
-            $table->string('adjudicators');
-            $table->string('winning_company');
-            $table->string('publication_date');
-            $table->string('agreement_date');
-            $table->string('amount');
-            $table->string('cpv');
-            $table->string('deadline');
-            $table->string('location');
-            $table->string('reasoning');
+            $table->text('contract_id')->unique();
+            $table->text('announcement');
+            $table->text('contract_type');
+            $table->text('procedure_type');
+            $table->text('contract_object');
+            $table->text('adjudicators');
+            $table->text('winning_company');
+            $table->text('publication_date');
+            $table->text('agreement_date');
+            $table->text('amount');
+            $table->text('cpv');
+            $table->text('deadline');
+            $table->text('location');
+            $table->text('reasoning');
             $table->enum('status', ['read', 'unread'])->default('unread');
 
             $table->timestamps();

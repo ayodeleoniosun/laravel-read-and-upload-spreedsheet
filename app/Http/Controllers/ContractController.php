@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\InvalidFileException;
 use App\Http\Interfaces\ContractInterface;
 use Illuminate\Http\Request;
-use App\Http\Requests\ContractUploadRequest;
 
 class ContractController extends Controller
 {
@@ -88,8 +87,14 @@ class ContractController extends Controller
      */
 
 
-    public function upload(ContractUploadRequest $request)
+    public function upload(Request $request)
     {
+        $body = $request->all();
+        
+        if (!$request->file) {
+            throw new InvalidFileException();
+        }
+
         $extension = $request->file('file')->getClientOriginalExtension();
         $allowedExtensions = ['xls', 'xlsx'];
 
@@ -97,7 +102,7 @@ class ContractController extends Controller
             throw new InvalidFileException();
         }
 
-        $response = $this->contractInterface->upload((object) $request->all());
+        $response = $this->contractInterface->upload((object) $body);
         return response()->json($response, 201);
     }
 

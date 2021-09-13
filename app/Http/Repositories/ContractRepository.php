@@ -31,7 +31,7 @@ class ContractRepository implements ContractInterface
             });
         }
 
-        $contracts = $contracts->orderBy('created_at', 'DESC')->paginate(50);
+        $contracts = $contracts->paginate(50);
 
         if ($contracts->count() == 0) {
             throw new NoContractFoundException();
